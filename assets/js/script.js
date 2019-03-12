@@ -39,8 +39,7 @@ function myFunction() {
 var dec = new Date();
 document.getElementById("new").innerHTML = dec.toLocaleDateString();
 
-var news = new Date();
-document.getElementById("news").innerHTML = news.toLocaleTimeString();
+
 
 
      var days = new Date();
@@ -53,6 +52,14 @@ document.getElementById("news").innerHTML = news.toLocaleTimeString();
      weekday[5] = "Friday";
      weekday[6] = "Saturday";
      document.getElementById("day").innerHTML = weekday[days.getDay()];
+
+
+     function display_ct() {
+var x = new Date()
+var x1=x.toUTCString();// changing the display to UTC string
+document.getElementById('ct').innerHTML = x1;
+tt=display_c();
+ }
 
 
 
