@@ -34,8 +34,26 @@ function myFunction() {
   }
 }
 
-var d = new Date();
-document.getElementById("demo").innerHTML = d.toUTCString();
+
+
+var dec = new Date();
+document.getElementById("new").innerHTML = dec.toLocaleDateString();
+
+var news = new Date();
+document.getElementById("news").innerHTML = news.toLocaleTimeString();
+
+
+     var days = new Date();
+     var weekday = new Array(7);
+     weekday[0] = "Sunday";
+     weekday[1] = "Monday";
+     weekday[2] = "Tuesday";
+     weekday[3] = "Wednesday";
+     weekday[4] = "Thursday";
+     weekday[5] = "Friday";
+     weekday[6] = "Saturday";
+     document.getElementById("day").innerHTML = weekday[days.getDay()];
+
 
 
 
@@ -60,3 +78,43 @@ if (typeof Storage !== "undefined") {
 console.log("localstorage visit count now: " + localStorage.visitcount);
 
 // localStorage.clear();
+
+
+
+
+
+
+
+
+// Set the original/default language
+var lang = "en";
+var currentClass = "currentLang";
+
+// Load the language lib
+google.load("language",1);
+
+// When the DOM is ready....
+window.addEvent("domready",function(){
+	// Retrieve the DIV to be translated.
+	var translateDiv = document.id("languageBlock");
+	// Define a function to switch from the currentlanguage to another
+	var callback = function(result) {
+		if(result.translation) {
+			translateDiv.set("html",result.translation);
+		}
+	};
+	// Add a click listener to update the DIV
+	$$("#languages a").addEvent("click",function(e) {
+		// Stop the event
+		if(e) e.stop();
+		// Get the "to" language
+		var toLang = this.get("rel");
+		// Set the translation into motion
+		google.language.translate(translateDiv.get("html"),lang,toLang,callback);
+		// Set the new language
+		lang = toLang;
+		// Add class to current
+		this.getSiblings().removeClass(currentClass);
+		this.addClass(currentClass);
+	});
+});
